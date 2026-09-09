@@ -133,7 +133,6 @@ export const APPLE_ICONS: Partial<Record<AppId, string>> = {
   calendar: "/icons/apple/calendar.png",
   settings: "/icons/apple/settings.png",
   // Project apps use their real product logos (squircle-wrapped SVGs)
-  kubrick: "/icons/kubrick.svg",
   scripy: "/icons/scripy.svg",
   b3vo: "/icons/b3vo.svg",
   campus: "/icons/campus.svg",

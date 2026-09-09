@@ -8,7 +8,6 @@ export type AppId =
   | "resume"
   | "contact"
   | "calendar"
-  | "kubrick"
   | "scripy"
   | "b3vo"
   | "campus"
@@ -78,7 +77,6 @@ const DEFAULT_BOUNDS: Record<AppId, WindowBounds> = {
   resume: { x: 300, y: 60, w: 760, h: 680 },
   contact: { x: 340, y: 150, w: 620, h: 480 },
   calendar: { x: 180, y: 60, w: 1000, h: 700 },
-  kubrick: { x: 120, y: 60, w: 1120, h: 740 },
   scripy: { x: 160, y: 80, w: 1120, h: 740 },
   b3vo: { x: 420, y: 44, w: 460, h: 830 },
   campus: { x: 460, y: 44, w: 460, h: 830 },

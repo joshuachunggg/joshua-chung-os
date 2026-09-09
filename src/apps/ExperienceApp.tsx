@@ -75,28 +75,9 @@ const SKILL_ICONS: Record<string, { img?: string; emoji?: string }> = {
 
 const SKILL_COUNT = Object.values(skills).reduce((n, items) => n + items.length, 0);
 
-const KUBRICK_LINES = [
-  "Audience engagement prediction through neural analysis using our multimodal inference model (Kubrick Monolith).",
-  "AI script coverage & script breakdowns.",
-  "Enabled filmmakers to score trailers for predicted audience attention by engineering and deploying a system that forecasts per-shot viewer neural response to video, built on top of the Tribe V2 model.",
-  "Powered model inference by building an end-to-end pipeline that segments video with ffmpeg, transcribes speech with WhisperX, and extracts audio features for feature-level prediction.",
-  "Cut infrastructure overhead by deploying the model as a serverless endpoint on Modal, securing webhooks with HMAC authentication to sanitize incoming jobs and persist outputs.",
-];
-
 function seedNotes(): Note[] {
   const now = Date.now();
   return [
-    {
-      id: "kubrick-note",
-      folderId: "notes",
-      updatedAt: now - 5 * 3_600_000,
-      logo: "/icons/kubrick.svg",
-      locked: true,
-      subtitle: "AI Native Film Suite for serious filmmakers",
-      dateLabel: "2026",
-      lines: KUBRICK_LINES,
-      body: ["Kubrick", "AI Native Film Suite for serious filmmakers", "", ...KUBRICK_LINES].join("\n"),
-    },
     ...experience.map((e, i) => ({
       id: e.id,
       folderId: "experience",

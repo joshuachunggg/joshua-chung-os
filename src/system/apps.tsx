@@ -12,14 +12,6 @@ import { CalendarApp } from "@/apps/CalendarApp";
 import { makeWebApp } from "@/apps/WebApp";
 import { makePhoneApp } from "@/apps/PhoneApp";
 
-const KubrickApp = makeWebApp({
-  name: "Kubrick",
-  url: "https://kubrick.to",
-  logo: "/icons/kubrick.svg",
-  splashBg: "#000",
-  splashColor: "#fff",
-});
-
 const ScripyApp = makeWebApp({
   name: "Scripy",
   url: "https://scripy.io",
@@ -112,14 +104,6 @@ export const APPS: Record<AppId, AppDefinition> = {
     minW: 700,
     minH: 520,
     keywords: ["calendar", "schedule", "book", "booking", "meeting", "call", "video", "cal", "time", "appointment"],
-  },
-  kubrick: {
-    id: "kubrick",
-    name: "Kubrick",
-    component: KubrickApp,
-    minW: 600,
-    minH: 420,
-    keywords: ["kubrick", "trailer", "attention", "neural", "film", "site", "browser"],
   },
   scripy: {
     id: "scripy",
