@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { useOS, mobileBounds, type AppId } from "@/system/store";
 import { Wallpaper } from "./Wallpaper";
-import { BootScreen } from "./BootScreen";
 import { MenuBar } from "./MenuBar";
 import { Dock } from "./Dock";
 import { WindowFrame } from "./Window";
@@ -15,7 +14,6 @@ import { AppIcon } from "@/system/icons";
 const MOBILE_QUERY = "(max-width: 820px)";
 
 export function MacOS() {
-  const booted = useOS((s) => s.booted);
   const windows = useOS((s) => s.windows);
   const order = useOS((s) => s.order);
   const mobile = useOS((s) => s.mobile);
@@ -104,13 +102,11 @@ export function MacOS() {
     return () => window.removeEventListener("pointermove", onMove);
   }, [fullscreenActive]);
 
-  // Auto-open the About window shortly after boot
+  // Open the profile immediately; the desktop is the landing page.
   useEffect(() => {
-    if (booted) {
-      const t = setTimeout(() => useOS.getState().openApp("about"), 350);
-      return () => clearTimeout(t);
-    }
-  }, [booted]);
+    const t = setTimeout(() => useOS.getState().openApp("about"), 120);
+    return () => clearTimeout(t);
+  }, []);
 
   const menuBarHidden = fullscreenActive && !peekTop;
   const dockHidden = fullscreenActive && !peekBottom;
@@ -120,8 +116,7 @@ export function MacOS() {
       <Wallpaper />
       <PeripheralSounds />
 
-      {booted && (
-        <>
+      <>
           {/* Desktop icons */}
           <div
             className={`absolute right-5 z-[10] flex flex-col items-center gap-5 ${
@@ -144,10 +139,7 @@ export function MacOS() {
           <Spotlight />
 
           <HintPill mobile={mobile} />
-        </>
-      )}
-
-      {!booted && <BootScreen />}
+      </>
     </div>
   );
 }
