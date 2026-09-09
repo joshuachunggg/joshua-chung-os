@@ -10,16 +10,16 @@ export function ResumeApp() {
         style={{ borderColor: "var(--divider)" }}
       >
         <span className="text-[13px] font-medium" style={{ color: "var(--text-secondary)" }}>
-          PRANAV_CAVATURU_RESUME.pdf
+          JOSHUA_CHUNG_RESUME.pdf
         </span>
-        <a href="/resume.pdf" download="Pranav_Cavaturu_Resume.pdf">
+        <a href="/resume.pdf" download="Joshua_Chung_Resume.pdf">
           <GlassButton primary>Download</GlassButton>
         </a>
       </div>
       <div className="min-h-0 flex-1 bg-[#525659]">
         <iframe
           src="/resume.pdf#view=FitH&toolbar=0"
-          title="Pranav Cavaturu Resume"
+          title="Joshua Chung Resume"
           className="h-full w-full border-0"
         />
       </div>
