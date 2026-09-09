@@ -2,6 +2,7 @@ import type { NextConfig } from "next";
 import path from "path";
 
 const nextConfig: NextConfig = {
+  allowedDevOrigins: ["c6a7-136-60-66-165.ngrok-free.app"],
   turbopack: {
     root: path.join(__dirname),
   },
