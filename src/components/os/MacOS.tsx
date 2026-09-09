@@ -150,8 +150,7 @@ function DesktopIcon({ label, appId }: { label: string; appId: AppId }) {
   return (
     <button
       className="group flex w-[84px] flex-col items-center gap-1 rounded-lg p-1.5"
-      onDoubleClick={() => !mobile && openApp(appId)}
-      onClick={() => mobile && openApp(appId)}
+      onClick={() => openApp(appId)}
     >
       <span className="rounded-xl p-0.5 transition-colors group-focus:bg-white/20">
         <AppIcon id={appId} size={mobile ? 44 : 52} className="drop-shadow-[0_5px_10px_rgba(0,0,0,0.35)]" />
