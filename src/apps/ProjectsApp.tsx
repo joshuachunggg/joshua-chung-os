@@ -14,16 +14,10 @@ const GLYPHS: Record<Project["icon"], string> = {
   pen: "✍️",
 };
 
-type Filter = "all" | "web" | "apps";
+type Filter = "all";
 
-function kindOf(p: Project): string {
-  if (p.id === "b3vo" || p.id === "campus") return "iOS Application";
-  if (p.id === "echo") return "macOS Application";
-  return "Web Application";
-}
-
-function isApp(p: Project) {
-  return kindOf(p) !== "Web Application";
+function kindOf(_p: Project): string {
+  return "Project";
 }
 
 function openProject(p: Project) {
@@ -71,8 +65,6 @@ const PATHS = {
   chevronRight: "M6 3 L10.5 8 L6 13",
   search: "M7 12 A5 5 0 1 0 7 2 A5 5 0 0 0 7 12 Z M10.6 10.6 L14 14",
   folder: "M1.5 4.5 a1 1 0 0 1 1-1 h3 l1.5 1.5 h6 a1 1 0 0 1 1 1 v6 a1 1 0 0 1 -1 1 h-10.5 a1 1 0 0 1 -1-1 Z",
-  globe: "M8 14 A6 6 0 1 0 8 2 A6 6 0 0 0 8 14 Z M2 8 h12 M8 2 c-4.5 3.5 -4.5 8.5 0 12 M8 2 c4.5 3.5 4.5 8.5 0 12",
-  phone: "M5 1.5 h6 a1 1 0 0 1 1 1 v11 a1 1 0 0 1 -1 1 h-6 a1 1 0 0 1 -1 -1 v-11 a1 1 0 0 1 1 -1 Z M7 12.5 h2",
 };
 
 function GridGlyph({ size = 14 }: { size?: number }) {
@@ -104,8 +96,6 @@ function ListGlyph({ size = 14 }: { size?: number }) {
 
 const SIDEBAR_FILTERS: { id: Filter; label: string; icon: keyof typeof PATHS }[] = [
   { id: "all", label: "All Projects", icon: "folder" },
-  { id: "web", label: "Web Apps", icon: "globe" },
-  { id: "apps", label: "iOS & macOS", icon: "phone" },
 ];
 
 export function ProjectsApp() {
@@ -119,8 +109,6 @@ export function ProjectsApp() {
 
   const visible = useMemo(() => {
     let list = projects;
-    if (filter === "web") list = list.filter((p) => !isApp(p));
-    if (filter === "apps") list = list.filter(isApp);
     const q = query.trim().toLowerCase();
     if (q) {
       list = list.filter(
@@ -454,7 +442,7 @@ export function ProjectsApp() {
                   [
                     ["Kind", kindOf(selected)],
                     ["Created", selected.year],
-                    ["Where", selected.url ? selected.url.replace("https://", "") : "pranavOS"],
+                    ["Where", selected.url ? selected.url.replace("https://", "") : "Joshua Chung OS"],
                   ] as const
                 ).map(([k, v]) => (
                   <div key={k} className="flex justify-between gap-3 py-[3px] text-[12px]">

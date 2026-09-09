@@ -74,19 +74,6 @@ const THEMES: Partial<Record<AppId, IconTheme>> = {
         <path d="M22 34 L 50 55 L 78 34" fill="none" stroke="#0a84ff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
       </g>`,
   },
-  snake: {
-    from: "#8fdd63",
-    to: "#3d9b2e",
-    glyph: `<g>
-        <path d="M30 74 C 18 68 20 54 36 52 C 52 50 60 50 60 41 C 60 32 50 30 42 34"
-          fill="none" stroke="#fff" stroke-width="12.5" stroke-linecap="round" />
-        <circle cx="41" cy="30.5" r="2.6" fill="#2f7d22" />
-        <circle cx="46.5" cy="36.5" r="2.6" fill="#2f7d22" />
-        <circle cx="72" cy="68" r="7.5" fill="#ff453a" />
-        <rect x="71" y="56.5" width="2.2" height="5" rx="1.1" fill="#7a4a21" />
-        <path d="M73.5 59 C 75 55.5 79 55 81 56.5 C 79.8 59.5 75.8 60.4 73.5 59 Z" fill="#cff0c2" />
-      </g>`,
-  },
   settings: {
     from: "#9c9ca4",
     to: "#55555e",
@@ -121,7 +108,7 @@ function iconMarkup(id: AppId, uid: string): string {
 
 /**
  * Real Apple macOS app icons (downloaded from macosicongallery.com's CDN).
- * Every app uses one except Snake, which keeps its custom SVG.
+ * Core desktop apps use matching macOS-style icons.
  */
 export const APPLE_ICONS: Partial<Record<AppId, string>> = {
   about: "/icons/apple/contacts.png",
@@ -130,47 +117,10 @@ export const APPLE_ICONS: Partial<Record<AppId, string>> = {
   terminal: "/icons/apple/terminal.png",
   resume: "/icons/apple/preview.png",
   contact: "/icons/apple/mail.png",
-  calendar: "/icons/apple/calendar.png",
   settings: "/icons/apple/settings.png",
-  // Project apps use their real product logos (squircle-wrapped SVGs)
-  scripy: "/icons/scripy.svg",
-  b3vo: "/icons/b3vo.svg",
-  campus: "/icons/campus.svg",
-  echo: "/icons/echo.svg",
 };
 
-// Apple's .icns renders keep the squircle at ~79% of the canvas; the custom
-// SVG uses the same margin so Snake sits at the same visual size.
 const SVG_VIEWBOX = "-13.3 -13.3 126.6 126.6";
-
-const WEEKDAYS = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
-
-/**
- * Calendar renders like the real macOS Calendar icon: white squircle with the
- * red weekday and today's date, generated at runtime so it's always current.
- * (Only rendered client-side — the OS UI mounts after boot — so there's no
- * SSR/client date mismatch.)
- */
-function calendarIconMarkup(uid: string): string {
-  const now = new Date();
-  return `<defs>
-      <linearGradient id="cal-bg-${uid}" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#ffffff" />
-        <stop offset="100%" stop-color="#e9e9ee" />
-      </linearGradient>
-      <clipPath id="cal-clip-${uid}"><path d="${SQUIRCLE}" /></clipPath>
-    </defs>
-    <g clip-path="url(#cal-clip-${uid})">
-      <rect width="100" height="100" fill="url(#cal-bg-${uid})" />
-      <text x="50" y="30" text-anchor="middle" fill="#ff453a"
-        font-family="-apple-system, 'Helvetica Neue', Arial, sans-serif"
-        font-size="15" font-weight="600" letter-spacing="1.5">${WEEKDAYS[now.getDay()]}</text>
-      <text x="50" y="76" text-anchor="middle" fill="#1c1c1e"
-        font-family="-apple-system, 'Helvetica Neue', Arial, sans-serif"
-        font-size="46" font-weight="300">${now.getDate()}</text>
-    </g>
-    <path d="${SQUIRCLE}" fill="none" stroke="rgba(0,0,0,0.12)" stroke-width="1" />`;
-}
 
 export function AppIcon({
   id,
@@ -204,7 +154,7 @@ export function AppIcon({
       className={className}
       style={{ display: "block" }}
       dangerouslySetInnerHTML={{
-        __html: id === "calendar" ? calendarIconMarkup(id) : iconMarkup(id, id),
+        __html: iconMarkup(id, id),
       }}
     />
   );
@@ -216,11 +166,6 @@ const dataUrlCache: Partial<Record<AppId, string>> = {};
 export function iconDataUrl(id: AppId): string {
   const apple = APPLE_ICONS[id];
   if (apple) return apple;
-  if (id === "calendar") {
-    // not cached: the glyph is today's date, which must stay current
-    const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${SVG_VIEWBOX}">${calendarIconMarkup("dock-calendar")}</svg>`;
-    return `data:image/svg+xml,${encodeURIComponent(svg)}`;
-  }
   if (!dataUrlCache[id]) {
     const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${SVG_VIEWBOX}">${iconMarkup(id, `dock-${id}`)}</svg>`;
     dataUrlCache[id] = `data:image/svg+xml,${encodeURIComponent(svg)}`;

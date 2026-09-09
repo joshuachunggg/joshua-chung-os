@@ -7,12 +7,6 @@ export type AppId =
   | "terminal"
   | "resume"
   | "contact"
-  | "calendar"
-  | "scripy"
-  | "b3vo"
-  | "campus"
-  | "echo"
-  | "snake"
   | "settings";
 
 export interface WindowBounds {
@@ -76,12 +70,6 @@ const DEFAULT_BOUNDS: Record<AppId, WindowBounds> = {
   terminal: { x: 260, y: 140, w: 680, h: 460 },
   resume: { x: 300, y: 60, w: 760, h: 680 },
   contact: { x: 340, y: 150, w: 620, h: 480 },
-  calendar: { x: 180, y: 60, w: 1000, h: 700 },
-  scripy: { x: 160, y: 80, w: 1120, h: 740 },
-  b3vo: { x: 420, y: 44, w: 460, h: 830 },
-  campus: { x: 460, y: 44, w: 460, h: 830 },
-  echo: { x: 200, y: 100, w: 1120, h: 740 },
-  snake: { x: 300, y: 70, w: 680, h: 640 },
   settings: { x: 380, y: 110, w: 700, h: 520 },
 };
 

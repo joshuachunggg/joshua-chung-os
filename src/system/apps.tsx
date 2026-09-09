@@ -7,34 +7,6 @@ import { TerminalApp } from "@/apps/TerminalApp";
 import { ResumeApp } from "@/apps/ResumeApp";
 import { ContactApp } from "@/apps/ContactApp";
 import { SettingsApp } from "@/apps/SettingsApp";
-import { SnakeApp } from "@/apps/SnakeApp";
-import { CalendarApp } from "@/apps/CalendarApp";
-import { makeWebApp } from "@/apps/WebApp";
-import { makePhoneApp } from "@/apps/PhoneApp";
-
-const ScripyApp = makeWebApp({
-  name: "Scripy",
-  url: "https://scripy.io",
-  logo: "/icons/scripy.svg",
-});
-
-const EchoApp = makeWebApp({
-  name: "Echo",
-  url: "https://echotexts.vercel.app",
-  logo: "/icons/echo.svg",
-});
-
-const B3voApp = makePhoneApp({
-  name: "B3VO",
-  src: "/b3vo",
-  logo: "/icons/b3vo.svg",
-});
-
-const CampusApp = makePhoneApp({
-  name: "CAMPUS",
-  src: "/campus",
-  logo: "/icons/campus.svg",
-});
 
 export interface AppDefinition {
   id: AppId;
@@ -96,54 +68,6 @@ export const APPS: Record<AppId, AppDefinition> = {
     minW: 480,
     minH: 380,
     keywords: ["contact", "mail", "email", "linkedin", "github", "reach"],
-  },
-  calendar: {
-    id: "calendar",
-    name: "Schedule a Call",
-    component: CalendarApp,
-    minW: 700,
-    minH: 520,
-    keywords: ["calendar", "schedule", "book", "booking", "meeting", "call", "video", "cal", "time", "appointment"],
-  },
-  scripy: {
-    id: "scripy",
-    name: "Scripy",
-    component: ScripyApp,
-    minW: 600,
-    minH: 420,
-    keywords: ["scripy", "screenwriting", "screenplay", "fountain", "coverage", "site", "browser"],
-  },
-  b3vo: {
-    id: "b3vo",
-    name: "B3VO",
-    component: B3voApp,
-    minW: 340,
-    minH: 560,
-    keywords: ["b3vo", "bevo", "mental health", "ios", "iphone", "app", "companion"],
-  },
-  campus: {
-    id: "campus",
-    name: "CAMPUS",
-    component: CampusApp,
-    minW: 340,
-    minH: 560,
-    keywords: ["campus", "ut", "events", "marketplace", "buzz", "ios", "iphone", "app", "social"],
-  },
-  echo: {
-    id: "echo",
-    name: "Echo",
-    component: EchoApp,
-    minW: 600,
-    minH: 420,
-    keywords: ["echo", "imessage", "chatbot", "contacts", "imitate", "macos", "open source", "site"],
-  },
-  snake: {
-    id: "snake",
-    name: "Snake",
-    component: SnakeApp,
-    minW: 420,
-    minH: 420,
-    keywords: ["snake", "game", "play", "arcade", "google", "fun"],
   },
   settings: {
     id: "settings",
