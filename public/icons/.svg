@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs><clipPath id="sq"><path d="M 50,9 C 18,9 9,18 9,50 C 9,82 18,91 50,91 C 82,91 91,82 91,50 C 91,18 82,9 50,9 Z"/></clipPath></defs>
+  <g clip-path="url(#sq)">
+    <rect x="9" y="9" width="82" height="82" fill=""/>
+    <image href="data:image/png;base64," x="9" y="9" width="82" height="82" preserveAspectRatio="xMidYMid slice"/>
+  </g>
+  <path d="M 50,9 C 18,9 9,18 9,50 C 9,82 18,91 50,91 C 82,91 91,82 91,50 C 91,18 82,9 50,9 Z" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="0.8"/>
+</svg>
