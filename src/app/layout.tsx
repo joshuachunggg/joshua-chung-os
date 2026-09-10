@@ -11,11 +11,19 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://joshuachunggg.github.io/joshua-chung-os"),
   title: "Joshua Chung — AI Systems, Finance & Energy",
   description: "Joshua Chung builds AI-enabled operational systems, financial tools, and energy-infrastructure software.",
   openGraph: {
     title: "Joshua Chung — AI Systems, Finance & Energy",
     description: "Explore Joshua Chung's work across AI systems, finance, and energy infrastructure.",
+    images: [{ url: "/headshot.jpg", alt: "Joshua Chung" }],
+  },
+  twitter: {
+    card: "summary",
+    title: "Joshua Chung — AI Systems, Finance & Energy",
+    description: "Explore Joshua Chung's work across AI systems, finance, and energy infrastructure.",
+    images: [{ url: "/headshot.jpg", alt: "Joshua Chung" }],
   },
 };
 
